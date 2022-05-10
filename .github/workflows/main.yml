@@ -1,10 +1,10 @@
-name: Deploy
+name: CI
 
 on: [ push ]
 
 jobs:
   test:
-    runs-out: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 16
@@ -12,7 +12,7 @@ jobs:
         with:
           distribution: "adopt"
           java-version: 16
-        - name: clean build
-          run: ./gradlew clean test --info --stacktrace
+      - name: clean build
+        run: ./gradlew clean test --info --stacktrace
 
 
