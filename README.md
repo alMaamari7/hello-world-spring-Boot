@@ -1,3 +1,4 @@
+[![CI](https://github.com/alMaamari7/hello-world-spring-Boot/actions/workflows/main.yml/badge.svg)](https://github.com/alMaamari7/hello-world-spring-Boot/actions/workflows/main.yml)
 # README
 
 # hello-world-spring-Boot
