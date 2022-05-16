@@ -35,6 +35,7 @@ public class PersonEntity {
     public PersonEntity(String firstname, String lastname, String contactDetails, boolean offeredSomething, boolean searchedSomething) {
     }
 
+
     public Long getId() {
         return id;
     }
