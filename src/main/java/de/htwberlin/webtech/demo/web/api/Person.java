@@ -7,7 +7,7 @@ public class Person {
     private String lastname;
 
 
-    public Person(long id, String firstname, String lastname){
+    public Person(long id, String personEntityFirstname, String firstname, boolean offeredSomething, boolean searchedSomething, String lastname){
         this.id=id;
         this.firstname=firstname;
         this.lastname=lastname;

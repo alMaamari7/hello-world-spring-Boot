@@ -32,7 +32,7 @@ public class PersonEntity {
         this.contactDetails = contactDetails;
     }
 
-    protected PersonEntity() {
+    public PersonEntity(String firstname, String lastname, String contactDetails, boolean offeredSomething, boolean searchedSomething) {
     }
 
     public Long getId() {
