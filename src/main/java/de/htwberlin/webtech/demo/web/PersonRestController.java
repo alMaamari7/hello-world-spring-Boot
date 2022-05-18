@@ -25,7 +25,7 @@ public class PersonRestController {
     }
 
    @PostMapping(path ="/api/v1/persons")
-   public ResponseEntity<Void> createPerson( PersonManipulationRequest request) throws URISyntaxException {
+   public ResponseEntity<Void> createPerson(@RequestBody PersonManipulationRequest request) throws URISyntaxException {
      var person = personService.create(request);
      URI uri =new URI("/api/v1/persons/" +person.getId());
      return ResponseEntity.created(uri).build();
@@ -38,14 +38,14 @@ public class PersonRestController {
    }
 
    @PutMapping(path ="/api/v1/persons{id}")
-    public ResponseEntity<Person> ubdatePerson(@PathVariable Long id, @RequestBody PersonManipulationRequest request){
-     var person= personService.ubdate(id, request);
+    public ResponseEntity<Person> updatePerson(@PathVariable Long id, @RequestBody PersonManipulationRequest request){
+     var person= personService.update(id, request);
        return person!= null? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
    }
 
    @DeleteMapping(path ="/api/v1/persons{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
-        boolean successful = personService.deletById(id);
+        boolean successful = personService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
    }
 

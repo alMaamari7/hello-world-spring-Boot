@@ -4,13 +4,15 @@ import de.htwberlin.webtech.demo.persistence.PersonEntity;
 import de.htwberlin.webtech.demo.persistence.PersonRepository;
 import de.htwberlin.webtech.demo.web.api.Person;
 import de.htwberlin.webtech.demo.web.api.PersonManipulationRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PersonService {
 
-    public final PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
@@ -19,16 +21,16 @@ public class PersonService {
    public List<Person> findAll(){
         List<PersonEntity> persons = personRepository.findAll();
         return persons.stream()
-                .map(personEntity -> transformEntity(personEntity))
+                .map(this::transformEntity)
                 .collect(Collectors.toList());
    }
 
    public Person create(PersonManipulationRequest request){
      var personEntity = new PersonEntity(request.getFirstname(),
                                          request.getLastname(),
-                                         request.getContactDetails(),
                                          request.isOfferedSomething(),
-                                         request.isSearchedSomething());
+                                         request.isSearchedSomething(),
+                                         request.getContactDetails());
      personEntity =personRepository.save(personEntity);
      return transformEntity(personEntity);
    }
@@ -48,7 +50,7 @@ public class PersonService {
         return personEntity.isPresent()? transformEntity(personEntity.get()) : null;
     }
 
-   public Person ubdate(Long id, PersonManipulationRequest request) {
+   public Person update(Long id, PersonManipulationRequest request) {
         var personEntityOptional= personRepository.findById(id);
         if(personEntityOptional.isEmpty()){return  null;}
         var personEntity =  personEntityOptional.get();
@@ -61,7 +63,7 @@ public class PersonService {
         return transformEntity(personEntity);
    }
 
-   public boolean deletById(Long id){
+   public boolean deleteById(Long id){
         if(!personRepository.existsById(id)){return false;}
         personRepository.deleteById(id);
         return true;

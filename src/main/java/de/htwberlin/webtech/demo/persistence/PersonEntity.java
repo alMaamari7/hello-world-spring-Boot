@@ -23,8 +23,7 @@ public class PersonEntity {
     private String contactDetails;
 
 
-    public PersonEntity(Long id, String firstname, String lastname, boolean offeredSomething, boolean searchedSomething, String contactDetails) {
-        this.id = id;
+    public PersonEntity( String firstname, String lastname, boolean offeredSomething, boolean searchedSomething, String contactDetails) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.offeredSomething = offeredSomething;
@@ -32,7 +31,10 @@ public class PersonEntity {
         this.contactDetails = contactDetails;
     }
 
-    public PersonEntity(String firstname, String lastname, String contactDetails, boolean offeredSomething, boolean searchedSomething) {
+
+
+    protected PersonEntity() {
+
     }
 
 
